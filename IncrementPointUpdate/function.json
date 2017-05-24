@@ -12,8 +12,7 @@
       "type": "http",
       "direction": "out",
       "name": "res"
-    }
-    ,
+    },
     {
       "name": "inputDocument",
       "type": "documentDB",
