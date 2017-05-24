@@ -1,0 +1,37 @@
+{
+  "disabled": false,
+  "bindings": [
+    {
+      "type": "queueTrigger",
+      "name": "myScoreItem",
+      "queueName": "scorequeue",
+      "connection": "MyStorageAcct",
+      "direction": "in"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    }
+    ,
+    {
+      "name": "inputDocument",
+      "type": "documentDB",
+      "databaseName": "tugofwar",
+      "collectionName": "teamscore",
+      "id" : "{queueTrigger}",
+      "connection": "MyAccount_COSMOSDB",     
+      "direction": "in",
+      "partitionKey": "tugofwar"
+    },
+    {
+      "name": "inputDocumentOut",
+      "type": "documentDB",
+      "databaseName": "tugofwar",
+      "collectionName": "teamscore",
+      "connection": "MyAccount_COSMOSDB",     
+      "direction": "out",
+      "partitionKey": "tugofwar"
+    }
+  ]
+}
