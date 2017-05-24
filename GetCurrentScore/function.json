@@ -1,0 +1,28 @@
+{
+  "disabled": false,
+  "bindings": [
+    {
+      "authLevel": "function",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "name": "documents",
+      "type": "documentdb",
+      "direction": "in",
+      "databaseName": "tugofwar",
+      "collectionName": "teamscore",
+      "sqlQuery": "SELECT * from c where c.team = 'tugofwar'",
+      "connection": "MyAccount_COSMOSDB"
+    }
+  ]
+}
