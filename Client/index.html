@@ -23,36 +23,40 @@
                 </div>                
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <h1>Team 1</h1>
                     <button class="btn btn-lg btn-primary" id="team1"></button>
                 </div>
-                <div class="col-md-4">              
+                <div class="col-md-8">   
+                    <div style="position:relative;">
+                        <img id="logo" src="functions-logo.png" style="width: 150px; position: absolute;left: 300px;">     
+                    </div>      
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <h1>Team 2</h1>
                     <button class="btn btn-lg btn-primary" id="team2"></button>
                 </div>                                
             </div>
-            <div class="row">
+            <!--<div class="row">
                 <div class="col-md-12">
-                    <div id="edd"></div>
+                    <img src="images/functions-logo.png" style="width: 150px;">
                 </div>
-            </div>
+            </div>-->
         </div>
         
         <script>
             $( document ).ready(function() {
-                //updateScore();
                 setInterval(updateScore, 500);
             });
 
             var updateScore = function() {
 
+                var logotomove = 0;
                 var scores;
                 var Team1Score;
                 var Team2Score;
 
+                // get the current scores
                 $.ajax({
                         url : "https://codeeurope-tugofwar.azurewebsites.net/getscores",
                         type: "GET",
@@ -65,14 +69,23 @@
                             //$("#counter").text(scores[0].Score + ' - ' + scores[1].Score );
                             $("#team1").text(Team1Score);
                             $("#team2").text(Team2Score);
+
+                            // do the math
+                            logotomove = parseInt(Team1Score) - parseInt(Team2Score);    
+                            console.log(logotomove);
+                                
+                            // move logo based on scores
+                            $("#logo").css({
+                                left: $("#logo").position().left - logotomove + "px"
+                            });    
+
                         }
                     });
 
+
+
             };
-
-
-            
-
         </script>
+
     </body>
 </html>
