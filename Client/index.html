@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Azure Functions Tug of War</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="row">
+                <div class="jumbotron">
+                    <h1>Azure Functions Tug of War</h1>
+                </div>                
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h1>Team 1</h1>
+                    <button class="btn btn-lg btn-primary" id="team1"></button>
+                </div>
+                <div class="col-md-4">              
+                </div>
+                <div class="col-md-4">
+                    <h1>Team 2</h1>
+                    <button class="btn btn-lg btn-primary" id="team2"></button>
+                </div>                                
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="edd"></div>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+            $( document ).ready(function() {
+                //updateScore();
+                setInterval(updateScore, 500);
+            });
+
+            var updateScore = function() {
+
+                var scores;
+                var Team1Score;
+                var Team2Score;
+
+                $.ajax({
+                        url : "https://codeeurope-tugofwar.azurewebsites.net/getscores",
+                        type: "GET",
+                        dataType   : "json",
+                        success    : function(data){
+                            
+                            scores = JSON.parse(data);
+                            Team1Score = scores[0].Score;
+                            Team2Score = scores[1].Score;
+                            //$("#counter").text(scores[0].Score + ' - ' + scores[1].Score );
+                            $("#team1").text(Team1Score);
+                            $("#team2").text(Team2Score);
+                        }
+                    });
+
+            };
+
+
+            
+
+        </script>
+    </body>
+</html>

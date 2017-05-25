@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Test Page</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="row">
+                <div class="jumbotron">
+                    <h1>Azure Functions Tug of War</h1>
+                    <p>Choose a team and click away!</p>
+                </div>                
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <button id="team1btn" class="btn btn-success btn-lg">Team 1</button>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <button id="team2btn" class="btn btn-primary btn-lg">Team 2</button>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+            $("#team1btn").click(function(){
+                $.ajax({
+                        url : "https://codeeurope-tugofwar.azurewebsites.net/incrementpoint",
+                        type: "POST",
+                        data: JSON.stringify(
+                            {team: "890dc5fc-0063-435d-b58a-9f76b4bcb820"}
+                        ),
+                        contentType: "application/json; charset=utf-8",
+                        dataType   : "json",
+                        success    : function(){
+                            console.log("Voted for Team 1");
+                        }
+                    });
+            }); 
+
+            $("#team2btn").click(function(){
+                $.ajax({
+                        url : "https://codeeurope-tugofwar.azurewebsites.net/incrementpoint",
+                        type: "POST",
+                        data: JSON.stringify(
+                            {team: "48085ac9-e0c0-4275-903d-a9f78be315b4"}
+                        ),
+                        contentType: "application/json; charset=utf-8",
+                        dataType   : "json",
+                        success    : function(){
+                            console.log("Voted for Team 2");
+                        }
+                    });
+            });             
+
+        </script>
+    </body>
+</html>
