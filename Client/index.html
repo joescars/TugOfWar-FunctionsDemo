@@ -37,11 +37,6 @@
                     <button class="btn btn-lg btn-primary" id="team2"></button>
                 </div>                                
             </div>
-            <!--<div class="row">
-                <div class="col-md-12">
-                    <img src="images/functions-logo.png" style="width: 150px;">
-                </div>
-            </div>-->
         </div>
         
         <script>
@@ -51,7 +46,6 @@
 
             var updateScore = function() {
 
-                var logotomove = 0;
                 var scores;
                 var Team1Score;
                 var Team2Score;
@@ -64,27 +58,41 @@
                         success    : function(data){
                             
                             scores = JSON.parse(data);
+
                             Team1Score = scores[0].Score;
                             Team2Score = scores[1].Score;
-                            //$("#counter").text(scores[0].Score + ' - ' + scores[1].Score );
-                            $("#team1").text(Team1Score);
-                            $("#team2").text(Team2Score);
+                            
+                            // Update scores
+                            refreshScore(Team1Score, Team2Score);
 
-                            // do the math
-                            logotomove = parseInt(Team1Score) - parseInt(Team2Score);    
-                            console.log(logotomove);
-                                
                             // move logo based on scores
-                            $("#logo").css({
-                                left: $("#logo").position().left - logotomove + "px"
-                            });    
+                            moveLogo(Team1Score, Team2Score);
 
                         }
                     });
 
+            };
 
+            var refreshScore = function(score1, score2) {
+
+                $("#team1").text(score1);
+                $("#team2").text(score2);
 
             };
+
+            var moveLogo = function(score1, score2) {
+                
+                // do the math
+                var toMove = parseInt(score1) - parseInt(score2);    
+                console.log("Moving: " + toMove);
+                    
+                // move logo based on scores
+                $("#logo").css({
+                    left: $("#logo").position().left - toMove + "px"
+                });                  
+
+            };
+
         </script>
 
     </body>

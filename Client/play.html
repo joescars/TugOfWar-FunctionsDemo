@@ -30,47 +30,40 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button id="team1btn" class="btn btn-success btn-lg btn-block">Team 1</button>
+                    <button id="team1btn" data-teamid="890dc5fc-0063-435d-b58a-9f76b4bcb820" class="btn btn-success btn-lg btn-block">Team 1</button>
                 </div>
             </div>
             <div class="row">&nbsp;</div>
             <div class="row">
                 <div class="col-md-12">
-                    <button id="team2btn" class="btn btn-primary btn-lg btn-block">Team 2</button>
+                    <button id="team2btn" data-teamid="48085ac9-e0c0-4275-903d-a9f78be315b4" class="btn btn-primary btn-lg btn-block">Team 2</button>
                 </div>
             </div>
         </div>
         
         <script>
             $("#team1btn").click(function(){
-                $.ajax({
-                        url : "https://codeeurope-tugofwar.azurewebsites.net/incrementpoint",
-                        type: "POST",
-                        data: JSON.stringify(
-                            {team: "890dc5fc-0063-435d-b58a-9f76b4bcb820"}
-                        ),
-                        contentType: "application/json; charset=utf-8",
-                        dataType   : "json",
-                        success    : function(){
-                            console.log("Voted for Team 1");
-                        }
-                    });
+                vote($(this).data('teamid'));
             }); 
 
             $("#team2btn").click(function(){
+                vote($(this).data('teamid'));
+            });    
+
+            var vote = function(teamId) {
                 $.ajax({
                         url : "https://codeeurope-tugofwar.azurewebsites.net/incrementpoint",
                         type: "POST",
                         data: JSON.stringify(
-                            {team: "48085ac9-e0c0-4275-903d-a9f78be315b4"}
+                            {team: teamId}
                         ),
                         contentType: "application/json; charset=utf-8",
                         dataType   : "json",
                         success    : function(){
-                            console.log("Voted for Team 2");
+                            console.log("Voted");
                         }
-                    });
-            });             
+                    });                
+            };         
 
         </script>
     </body>
