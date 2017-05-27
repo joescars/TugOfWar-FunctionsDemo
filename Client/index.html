@@ -41,7 +41,8 @@
         
         <script>
             $( document ).ready(function() {
-                setInterval(updateScore, 500);
+                //setInterval(updateScore, 500);
+                updateScore();
             });
 
             var updateScore = function() {
@@ -68,20 +69,20 @@
                             // move logo based on scores
                             moveLogo(Team1Score, Team2Score);
 
+                            // fire off the same function shortly
+                            rinseRepeat();
+
                         }
                     });
 
             };
 
             var refreshScore = function(score1, score2) {
-
                 $("#team1").text(score1);
                 $("#team2").text(score2);
-
             };
 
             var moveLogo = function(score1, score2) {
-                
                 // do the math
                 var toMove = parseInt(score1) - parseInt(score2);    
                 console.log("Moving: " + toMove);
@@ -90,7 +91,10 @@
                 $("#logo").css({
                     left: $("#logo").position().left - toMove + "px"
                 });                  
+            };
 
+            var rinseRepeat = function() {
+                setTimeout(updateScore, 500);
             };
 
         </script>
