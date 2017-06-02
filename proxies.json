@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json.schemastore.org/proxies",
+    "proxies": {
+        "getscores": {
+            "matchCondition": {
+                "route": "getscores",
+                "methods": [
+                    "GET"
+                ]
+            },
+            "backendUri": "%GET_CURRENT_SCORE_URL%"
+        },
+        "incrementpoint": {
+            "matchCondition": {
+                "route": "incrementpoint",
+                "methods": [
+                    "POST",
+                    "OPTIONS"
+                ]
+            },
+            "backendUri": "%INCREMENT_POINT_URL%"
+        },
+        "root": {
+            "matchCondition": {
+                "route": "/{restOfPath}"
+            },
+            "backendUri": "https://%mycontainer_uri%/content/{restOfPath}"
+        }
+    }
+}
