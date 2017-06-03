@@ -1,24 +1,30 @@
 module.exports = function (context, req) {
    
-    var Teams = [];
-    var documents = context.bindings.documents;
-    for (var i = 0; i < documents.length; i++) {
-        var document = documents[i];
-        context.log(document);
-        var t = new Team(document.TeamName,document.Score);
-        Teams.push(t);
-    }     
+    if (typeof req.body != 'undefined' && typeof req.body == 'object') {
 
-    context.res = {
-        status: 200,
-        body:  JSON.stringify(Teams)
-    };
+        var myReq = req.body;
+        //myReq.team
+        
+        var s;
+        var documents = context.bindings.documents;
+        for (var i = 0; i < documents.length; i++) {
+            var document = documents[i];
+            context.log(document);
+            s = new Score(myReq.team,document.Score);
+        }     
 
-    context.done();
+        context.res = {
+            status: 200,
+            body:  JSON.stringify(s)
+        };
+
+        context.done();
+
+    }    
 
 };
 
-function Team(teamNameIn, scoreIn) {
+function Score(teamNameIn, scoreIn) {
     this.TeamName = teamNameIn;
     this.Score = scoreIn;
 }

@@ -1,16 +1,15 @@
 module.exports = function (context) {
    
-    context.log('--------- UPDATING SCORE ---------');
-    context.log(JSON.stringify(context.bindings.inputDocument));
-    var curScore = parseInt(context.bindings.inputDocument.Score);
-    context.log('--------- CUR SCORE: ' + curScore + '---------');
-    var newScore = curScore + 1;
-    context.log('--------- NEW SCORE: ' + newScore + '---------');
-    context.log('--------- SCORE UPDATED ---------');
+    var myTeam = new Team(context.bindings.myScoreItem);  
 
-    context.bindings.inputDocumentOut = context.bindings.inputDocument;
-    context.bindings.inputDocumentOut.Score = newScore;
-
+    context.bindings.out = myTeam;
+     
     context.done();
-
 };
+
+function Team(teamNameIn) {
+    //this.team = "tugofwar";
+    this.team = teamNameIn;
+    //this.TeamName = teamNameIn;
+    //this.Score = 0;
+}

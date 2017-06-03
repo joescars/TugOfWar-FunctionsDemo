@@ -7,7 +7,7 @@
       "direction": "in",
       "name": "req",
       "methods": [
-        "get"
+        "post"
       ]
     },
     {
@@ -21,7 +21,7 @@
       "direction": "in",
       "databaseName": "tugofwar",
       "collectionName": "teamscore",
-      "sqlQuery": "SELECT * from c where c.team = 'tugofwar'",
+      "sqlQuery": "SELECT count(c.id) as Score FROM c where c.team = {team}",
       "connection": "MyAccount_COSMOSDB"
     }
   ]

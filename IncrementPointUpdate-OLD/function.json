@@ -1,5 +1,5 @@
 {
-  "disabled": false,
+  "disabled": true,
   "bindings": [
     {
       "type": "queueTrigger",
@@ -14,13 +14,23 @@
       "name": "res"
     },
     {
-      "name": "out",
+      "name": "inputDocument",
+      "type": "documentDB",
+      "databaseName": "tugofwar",
+      "collectionName": "teamscore",
+      "id" : "{queueTrigger}",
+      "connection": "MyAccount_COSMOSDB",     
+      "direction": "in",
+      "partitionKey": "tugofwar"
+    },
+    {
+      "name": "inputDocumentOut",
       "type": "documentDB",
       "databaseName": "tugofwar",
       "collectionName": "teamscore",
       "connection": "MyAccount_COSMOSDB",     
       "direction": "out",
-      "createIfNotExists": true
+      "partitionKey": "tugofwar"
     }
   ]
 }
