@@ -23,3 +23,4 @@ project.lock.json
 .secrets
 appsettings.json
 local.settings.json
+local.settings.bak.json
