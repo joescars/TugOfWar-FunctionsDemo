@@ -1,0 +1,14 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=codeeuropetugof8be5;AccountKey=U9yBaEwTcvUmxhwMeFmBz5NoqIEwqRERWKpazvonROVa0/ybMljC9nMs4efrZ9S2xEyKsnTgHZedu9O4jYVQ5Q==",
+    "AzureWebJobsDashboard": "DefaultEndpointsProtocol=https;AccountName=codeeuropetugof8be5;AccountKey=U9yBaEwTcvUmxhwMeFmBz5NoqIEwqRERWKpazvonROVa0/ybMljC9nMs4efrZ9S2xEyKsnTgHZedu9O4jYVQ5Q==",
+    "FUNCTIONS_EXTENSION_VERSION": "~1",
+    "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING": "DefaultEndpointsProtocol=https;AccountName=codeeuropetugof8be5;AccountKey=U9yBaEwTcvUmxhwMeFmBz5NoqIEwqRERWKpazvonROVa0/ybMljC9nMs4efrZ9S2xEyKsnTgHZedu9O4jYVQ5Q==",
+    "WEBSITE_CONTENTSHARE": "codeeurope-tugofwar8be5",
+    "WEBSITE_NODE_DEFAULT_VERSION": "6.5.0",
+    "MyStorageAcct": "DefaultEndpointsProtocol=https;AccountName=tugofwarstorage;AccountKey=SDyNF1PCsEQPIVOsfu8bOIH3EzJdJV25/4Z7HKdux6ERbgtPIfoxfxvGukeOYfx9/AlGG4jSZxgOyMmVWZiy3w==;EndpointSuffix=core.windows.net",
+    "MyAccount_COSMOSDB": "AccountEndpoint=https://tugofwar.documents.azure.com:443/;AccountKey=MBPtjsP5x5CHPMiWc55K0YuKVIBb7cDdy8aYsCe1WFXAm838x6BWOPqIrnUMNOxLYl5Zy4XW3nuuDP0WsQE8bw==;"
+  },
+  "ConnectionStrings": {}
+}

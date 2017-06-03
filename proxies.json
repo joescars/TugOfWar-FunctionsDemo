@@ -8,7 +8,7 @@
                     "GET"
                 ]
             },
-            "backendUri": "%GET_CURRENT_SCORE_URL%"
+            "backendUri": "https://%GET_CURRENT_SCORE_URL%"
         },
         "incrementpoint": {
             "matchCondition": {
@@ -18,7 +18,7 @@
                     "OPTIONS"
                 ]
             },
-            "backendUri": "%INCREMENT_POINT_URL%"
+            "backendUri": "https://%INCREMENT_POINT_URL%"
         },
         "root": {
             "matchCondition": {
