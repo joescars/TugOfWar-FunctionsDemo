@@ -48,33 +48,51 @@
 
             var updateScore = function() {
 
-                var scores;
-                var Team1Score;
-                var Team2Score;
+                var Team1Name = "TeamJoe";
+                var Team2Name = "TeamBob";
+                var scoreResult;
+                var Team1Score = 0;
+                var Team2Score = 0;
+                var myData = {
+                    "team" : Team1Name
+                };
+                var myData2 = {
+                    "team" : Team2Name
+                };                
 
                 // get the current scores
                 $.ajax({
                         url : "https://aztugofwar.azurewebsites.net/getscores",
-                        type: "GET",
+                        type: "POST",
+                        data: JSON.stringify(myData),
+                        contentType: "application/json",
                         dataType   : "json",
                         success    : function(data){
-                            
-                            scores = JSON.parse(data);
-
-                            Team1Score = scores[0].Score;
-                            Team2Score = scores[1].Score;
-                            
-                            // Update scores
-                            refreshScore(Team1Score, Team2Score);
-
-                            // move logo based on scores
-                            moveLogo(Team1Score, Team2Score);
-
-                            // fire off the same function shortly
-                            rinseRepeat();
-
+                            scoreResult = JSON.parse(data);
+                            Team1Score = scoreResult.Score;
                         }
                     });
+                // get the current scores
+                $.ajax({
+                        url : "https://aztugofwar.azurewebsites.net/getscores",
+                        type: "POST",
+                        data: JSON.stringify(myData2),
+                        contentType: "application/json",
+                        dataType   : "json",
+                        success    : function(data){
+                            scoreResult = JSON.parse(data);
+                            Team2Score = scoreResult.Score;
+                        }
+                    });                    
+                            
+                // Update scores
+                refreshScore(Team1Score, Team2Score);
+
+                // move logo based on scores
+                moveLogo(Team1Score, Team2Score);
+
+                // fire off the same function shortly
+                rinseRepeat();                    
 
             };
 

@@ -5,7 +5,9 @@
             "matchCondition": {
                 "route": "getscores",
                 "methods": [
-                    "GET"
+                    "GET",
+                    "POST",
+                    "OPTIONS"
                 ]
             },
             "backendUri": "https://%GET_CURRENT_SCORE_URL%"

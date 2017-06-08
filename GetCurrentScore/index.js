@@ -4,6 +4,7 @@ module.exports = function (context, req) {
 
         var myReq = req.body;
         //myReq.team
+        context.log("TEAM ---->: " + myReq.team);
         
         var s;
         var documents = context.bindings.documents;
