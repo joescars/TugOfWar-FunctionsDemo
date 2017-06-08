@@ -24,8 +24,17 @@
                 </div>                
             </div>
             <div class="row">
+                <div class="form-inline">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Team 1 Name" id="nameTeam1"/>
+                        <input type="text" class="form-control" placeholder="Team 2 Name" id="nameTeam2"/>
+                        <button class="btn btn-success" id="btnLetsPlay">Let's Play!</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-2">
-                    <h1>Team 1</h1>
+                    <h1 id="team1Display">Team 1</h1>
                     <button class="btn btn-lg btn-primary" id="team1"></button>
                 </div>
                 <div class="col-md-8">   
@@ -34,56 +43,76 @@
                     </div>      
                 </div>
                 <div class="col-md-2">
-                    <h1>Team 2</h1>
+                    <h1 id="team2Display">Team 2</h1>
                     <button class="btn btn-lg btn-primary" id="team2"></button>
                 </div>                                
             </div>
         </div>
         
         <script>
+
             $( document ).ready(function() {
-                //setInterval(updateScore, 500);
-                updateScore();
+                // do nothing... 
             });
 
-            var updateScore = function() {
+            var Team1Name = "Team1";
+            var Team2Name = "Team2";                
+            
+            var Team1Score = 0;
+            var Team2Score = 0;
 
-                var Team1Name = "TeamJoe";
-                var Team2Name = "TeamBob";
-                var scoreResult;
-                var Team1Score = 0;
-                var Team2Score = 0;
-                var myData = {
-                    "team" : Team1Name
-                };
-                var myData2 = {
-                    "team" : Team2Name
-                };                
+            $("#btnLetsPlay").click(function(){
+                
+                // set team names
+                Team1Name = $("#nameTeam1").val();
+                Team2Name = $("#nameTeam2").val();
 
-                // get the current scores
+                // display team names
+                $("#team1Display").text(Team1Name);
+                $("#team2Display").text(Team2Name);
+
+                // create the teams in the db
+                setupTeams();
+
+                // kick off the process
+                updateScore();
+
+            }); 
+
+            var setupTeams = function() {
+
+                var teamsData = 
+                    {
+                        "team1" : Team1Name,
+                        "team2" : Team2Name
+                    }
+
                 $.ajax({
-                        url : "https://aztugofwar.azurewebsites.net/getscores",
+                        url : "http://localhost:7071/api/CreateTeamSettings",
                         type: "POST",
-                        data: JSON.stringify(myData),
+                        data: JSON.stringify(teamsData),
                         contentType: "application/json",
                         dataType   : "json",
                         success    : function(data){
-                            scoreResult = JSON.parse(data);
-                            Team1Score = scoreResult.Score;
+                            console.log("Teams Created");
                         }
                     });
-                // get the current scores
-                $.ajax({
-                        url : "https://aztugofwar.azurewebsites.net/getscores",
-                        type: "POST",
-                        data: JSON.stringify(myData2),
-                        contentType: "application/json",
-                        dataType   : "json",
-                        success    : function(data){
-                            scoreResult = JSON.parse(data);
-                            Team2Score = scoreResult.Score;
-                        }
-                    });                    
+
+            };
+
+            var updateScore = function() {
+                
+                console.log("---------------")
+                var scoreResult;
+
+                var team1Data = {"team" : Team1Name};
+                var team2Data = {"team" : Team2Name};                
+
+                getScore(team1Data,1);
+                getScore(team2Data,2);
+
+                console.log("Team 1: " + Team1Score);
+                console.log("Team 2: " + Team2Score);
                             
                 // Update scores
                 refreshScore(Team1Score, Team2Score);
@@ -93,6 +122,26 @@
 
                 // fire off the same function shortly
                 rinseRepeat();                    
+
+            };
+
+            var getScore = function(teamData,teamNum) {
+
+                $.ajax({
+                        url : "https://aztugofwar.azurewebsites.net/getscores",
+                        type: "POST",
+                        data: JSON.stringify(teamData),
+                        contentType: "application/json",
+                        dataType   : "json",
+                        success    : function(data){
+                            var Result = JSON.parse(data);
+                            if(teamNum == 1) {
+                                Team1Score = Result.Score;
+                            } else {
+                                Team2Score = Result.Score;
+                            }
+                        }
+                    });
 
             };
 
@@ -113,7 +162,7 @@
             };
 
             var rinseRepeat = function() {
-                setTimeout(updateScore, 500);
+                setTimeout(updateScore, 1000);
             };
 
         </script>

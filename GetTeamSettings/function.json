@@ -1,5 +1,5 @@
 {
-  "disabled": true,
+  "disabled": false,
   "bindings": [
     {
       "authLevel": "function",
@@ -7,7 +7,7 @@
       "direction": "in",
       "name": "req",
       "methods": [
-        "post"
+        "get"
       ]
     },
     {
@@ -16,13 +16,13 @@
       "name": "res"
     },
     {
-      "name": "out",
-      "type": "documentDB",
+      "name": "documents",
+      "type": "documentdb",
+      "direction": "in",
       "databaseName": "tugofwar",
-      "collectionName": "teamscore",
-      "createIfNotExists": true,
-      "connection": "MyAccount_COSMOSDB",     
-      "direction": "out"
+      "collectionName": "settings",
+      "sqlQuery": "SELECT Top 1 * from c Order By c._ts Desc",
+      "connection": "MyAccount_COSMOSDB"
     }
   ]
 }

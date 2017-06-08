@@ -30,24 +30,35 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button id="team1btn" data-teamid="TeamDX1" class="btn btn-success btn-lg btn-block">Team 1</button>
+                    <button id="team1btn" class="btn btn-success btn-lg btn-block">Loading Team Info...</button>
                 </div>
             </div>
             <div class="row">&nbsp;</div>
             <div class="row">
                 <div class="col-md-12">
-                    <button id="team2btn" data-teamid="TeamDX2" class="btn btn-primary btn-lg btn-block">Team 2</button>
+                    <button id="team2btn" class="btn btn-primary btn-lg btn-block">Loading Team Info...</button>
                 </div>
             </div>
         </div>
         
         <script>
+
+            $( document ).ready(function() {
+                
+                // get team settings
+                getSettings();
+
+            });
+
+            var Team1Name = "Loading... ";
+            var Team2Name = "Loading... ";
+
             $("#team1btn").click(function(){
-                vote($(this).data('teamid'));
+                vote(Team1Name);
             }); 
 
             $("#team2btn").click(function(){
-                vote($(this).data('teamid'));
+                vote(Team2Name);
             });    
 
             var vote = function(teamId) {
@@ -63,7 +74,41 @@
                             console.log("Voted");
                         }
                     });                
-            };         
+            };      
+
+            var getSettings = function() {
+
+                var currScore = 0;
+
+                function setScore(score) {
+                    currScore = score;
+                }
+
+                $.ajax({
+                        url : "http://localhost:7071/api/GetTeamSettings",
+                        type: "GET",
+                        contentType: "application/json",
+                        dataType   : "json",
+                        success    : function(data){
+                            
+                            var Result = JSON.parse(data);
+                            Team1Name = Result.team1;
+                            Team2Name = Result.team2;
+
+                            // set button labels
+                            setupLabels();        
+
+                        }
+                    });
+
+                return currScore;
+
+            };            
+
+            var setupLabels = function() {
+                 $("#team1btn").text("Team: " + Team1Name);
+                 $("#team2btn").text("Team: " + Team2Name);
+            }
 
         </script>
     </body>

@@ -8,8 +8,5 @@ module.exports = function (context) {
 };
 
 function Team(teamNameIn) {
-    //this.team = "tugofwar";
     this.team = teamNameIn;
-    //this.TeamName = teamNameIn;
-    //this.Score = 0;
 }
