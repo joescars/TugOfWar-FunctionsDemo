@@ -27,6 +27,27 @@
                 "route": "/{restOfPath}"
             },
             "backendUri": "https://%mycontainer_uri%/content/{restOfPath}"
+        },
+        "createteams": {
+            "matchCondition": {
+                "route": "/createteams",
+                "methods": [
+                    "GET",
+                    "POST",
+                    "OPTIONS"
+                ]
+            },
+            "backendUri": "https://%CREATE_TEAM_SETTINGS_URL%"
+        },
+        "getsettings": {
+            "matchCondition": {
+                "route": "/getsettings",
+                "methods": [
+                    "GET",
+                    "OPTIONS"
+                ]
+            },
+            "backendUri": "https://%GET_TEAM_SETTINGS_URL%"
         }
     }
 }
