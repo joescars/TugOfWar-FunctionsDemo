@@ -16,13 +16,11 @@
       "name": "res"
     },
     {
-      "name": "out",
-      "type": "documentDB",
-      "databaseName": "tugofwar",
-      "collectionName": "settings",
-      "createIfNotExists": true,
-      "connection": "MyAccount_COSMOSDB",     
-      "direction": "out"
-    }
+        "name": "out",
+        "type": "table",
+        "direction": "out",
+        "tableName": "gamesettings",
+        "connection": "AzureWebJobsStorage"
+    }    
   ]
 }

@@ -1,13 +1,10 @@
 module.exports = function (context, req) {
    
     var t;
+
+    context.log(context.bindings.settingEntity);
+
     var documents = context.bindings.documents;
-    
-    for (var i = 0; i < documents.length; i++) {
-        var document = documents[i];
-        context.log(document);
-        t = new TeamSettings(document.team1,document.team2);
-    } 
 
     context.res = {
         status: 200,
