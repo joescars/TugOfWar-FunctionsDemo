@@ -20,7 +20,7 @@
         "type": "table",
         "direction": "out",
         "tableName": "gamesettings",
-        "connection": "AzureWebJobsStorage"
+        "connection": "MyStorageAcct"
     }    
   ]
 }

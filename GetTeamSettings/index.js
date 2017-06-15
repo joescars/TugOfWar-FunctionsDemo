@@ -1,10 +1,9 @@
 module.exports = function (context, req) {
-   
-    var t;
 
-    context.log(context.bindings.settingEntity);
+    var myTeams = context.bindings.settingEntity;
 
-    var documents = context.bindings.documents;
+    // we are always bringing back 1 record in the array
+    var t = new TeamSettings(myTeams[0].team1,myTeams[0].team2);
 
     context.res = {
         status: 200,

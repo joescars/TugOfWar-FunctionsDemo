@@ -16,13 +16,12 @@
       "name": "res"
     },
     {
-      "name": "documents",
-      "type": "documentdb",
-      "direction": "in",
-      "databaseName": "tugofwar",
-      "collectionName": "teamscore",
-      "sqlQuery": "SELECT count(c.id) as Score FROM c where c.team = {team}",
-      "connection": "MyAccount_COSMOSDB"
-    }
+      "name": "myPoints",
+      "type": "table",
+      "tableName": "teampoints",
+      "filter": "team eq '{team}'",
+      "connection": "MyStorageAcct",
+      "direction": "in"
+    }     
   ]
 }

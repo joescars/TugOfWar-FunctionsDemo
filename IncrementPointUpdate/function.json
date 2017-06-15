@@ -14,13 +14,11 @@
       "name": "res"
     },
     {
-      "name": "out",
-      "type": "documentDB",
-      "databaseName": "tugofwar",
-      "collectionName": "teamscore",
-      "connection": "MyAccount_COSMOSDB",     
-      "direction": "out",
-      "createIfNotExists": true
-    }
+        "name": "out",
+        "type": "table",
+        "direction": "out",
+        "tableName": "teampoints",
+        "connection": "MyStorageAcct"
+    } 
   ]
 }

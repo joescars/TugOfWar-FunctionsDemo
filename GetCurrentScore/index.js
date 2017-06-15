@@ -3,16 +3,11 @@ module.exports = function (context, req) {
     if (typeof req.body != 'undefined' && typeof req.body == 'object') {
 
         var myReq = req.body;
-        //myReq.team
-        context.log("TEAM ---->: " + myReq.team);
+        context.log("Score Team ---->: " + myReq.team);
         
         var s;
-        var documents = context.bindings.documents;
-        for (var i = 0; i < documents.length; i++) {
-            var document = documents[i];
-            context.log(document);
-            s = new Score(myReq.team,document.Score);
-        }     
+        var totalScore = context.bindings.myPoints.length;
+        s = new Score(myReq.team,totalScore);
 
         context.res = {
             status: 200,

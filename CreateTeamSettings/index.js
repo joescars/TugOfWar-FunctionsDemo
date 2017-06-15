@@ -12,7 +12,6 @@ module.exports = function (context, req) {
         + myTeamSetting.team2  + " - ")
 
         context.bindings.out = [];
-
         context.bindings.out.push(myTeamSetting);
 
     }
@@ -29,29 +28,14 @@ function TeamSettings(myObj) {
 
 var getInvertedTicks = function() {
 
-    var yourDate = new Date();  // for example
+    var yourDate = new Date();
 
-    // the number of .net ticks at the unix epoch
     var epochTicks = 621355968000000000;
 
-    // there are 10000 .net ticks per millisecond
     var ticksPerMillisecond = 10000;
 
-    // calculate the total number of .net ticks for your date
-    var yourTicks = epochTicks + (yourDate.getTime() * ticksPerMillisecond);
+    var yourTicks = epochTicks - (yourDate.getTime() * ticksPerMillisecond);
 
-    var invertedTimeKey = epochTicks - yourTicks;
+    return yourTicks;
 
-    return invertedTimeKey;
-
-}
-
-function guid() {
-  function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1);
-  }
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-    s4() + '-' + s4() + s4() + s4();
 }
