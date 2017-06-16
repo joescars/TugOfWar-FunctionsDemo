@@ -1,0 +1,19 @@
+body {
+    /*background-color: #EAEAEA;*/
+}
+#logoTop {
+    width: 20px;
+}
+#gameArea {
+    height: 100px;
+}
+#logo {
+    width: 100px; 
+    position: absolute;
+    /*left: 300px;*/
+}
+.teamNameDisplay {
+    font-weight: bold;
+    font-size: 1.5em;
+    padding: 5px;
+}

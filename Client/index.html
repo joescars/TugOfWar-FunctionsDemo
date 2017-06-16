@@ -13,42 +13,98 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+        <link rel="stylesheet" href="style.css">        
+
     </head>
     <body>
 
-        <div class="container">
-            <div class="row">
-                <div class="jumbotron">
-                    <h1>Azure Functions Tug of War</h1>
-                    <h2>Play here: <strong>https://aka.ms/aztugofwar</strong></h2>
-                </div>                
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+                        <img alt="Azure Functions Tug of War" id="logoTop" src="functions-logo.png">
+                    </a>                    
+                    <a class="navbar-brand">Azure Functions Tug of War</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://github.com/joescars/TugOfWar-FunctionsDemo">Repo</a>
+                    </li>
+                </ul>
             </div>
+        </nav>
+
+        <div class="container">
+
             <div class="row">
-                <div class="form-inline">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Team 1 Name" id="nameTeam1"/>
-                        <input type="text" class="form-control" placeholder="Team 2 Name" id="nameTeam2"/>
-                        <button class="btn btn-success" id="btnLetsPlay">Let's Play!</button>
+            <!-- start form -->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Tug of War Game Setup</div>
+                    <div class="panel-body">
+                        <p>Welcome to the Tug of War game demo powered by Azure Functions. Please enter in a name for Team 1 and Team 2 and hit <strong>Let's Play</strong>.</p>
+                        <p>Please make sure that your browser window is Maximized!</p>
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <label>Team 1:</label>
+                                <input type="text" class="form-control" placeholder="Team 1 Name" id="nameTeam1"/>
+                                <label>&nbsp;Team 2:</label>
+                                <input type="text" class="form-control" placeholder="Team 2 Name" id="nameTeam2"/>
+                                <button class="btn btn-success" id="btnLetsPlay">
+                                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span> Let's Play!
+                                    
+                                    </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>                    
+            <!-- end form -->
+            </div>
+
+            <!-- start display -->
+
+            <div class="row">
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        Real Time Game Progress
+                    </div>
+                    <div class="panel-body">
+                        <!-- start inner display -->
+                        <div class="row">
+                        <div class="col-md-2 text-center">                            
+                            <div class="teamNameDisplay" id="team1Display">Team 1</div>
+                            <button class="btn btn-lg btn-primary" id="team1">0</button>
+                        </div>
+                        <div class="col-md-8">   
+                            <div style="position:relative;" id="gameArea">
+                                <img id="logo" src="functions-logo.png">     
+                            </div>      
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <div class="teamNameDisplay" id="team2Display">Team 1</div>
+                            <button class="btn btn-lg btn-primary" id="team2">0</button>
+                        </div> 
+                        </div>
+                        <!-- end inner display -->
                     </div>
                 </div>
+    
+
             </div>
-            <div class="row">
-                <div class="col-md-2">
-                    <h1 id="team1Display">Team 1</h1>
-                    <button class="btn btn-lg btn-primary" id="team1"></button>
-                </div>
-                <div class="col-md-8">   
-                    <div style="position:relative;">
-                        <img id="logo" src="functions-logo.png" style="width: 150px; position: absolute;left: 300px;">     
-                    </div>      
-                </div>
-                <div class="col-md-2">
-                    <h1 id="team2Display">Team 2</h1>
-                    <button class="btn btn-lg btn-primary" id="team2"></button>
-                </div>                                
-            </div>
+
+            <div id="debugPanel"></div>
+            
+            <!-- end display -->
+
+            <hr>
+
+            <footer>
+                <ul class="nav navbar-nav">
+                    <p>follow me on twitter <a href="https://twitter.com/joescars">@joescars</a></p>
+                </ul>
+            </footer>            
         </div>
-        
+
        <script src="index.js"></script>
 
     </body>

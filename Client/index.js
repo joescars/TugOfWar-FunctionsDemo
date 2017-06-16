@@ -1,6 +1,9 @@
 $( document ).ready(function() {
-    // do nothing... 
+    // do nothing...
+    setGameArea(); 
 });
+
+var gameAreaWidth = 0;
 
 var Team1Name = "Team1";
 var Team2Name = "Team2";                
@@ -10,6 +13,12 @@ var Team2Score = 0;
 
 var siteDomain = "https://" + document.domain
 
+var setGameArea = function() {
+    gameAreaWidth = $("#gameArea").width();
+    var playerPadding = (gameAreaWidth - 100) / 2;
+    $("#logo").css("left",playerPadding);
+    //alert();
+};
 $("#btnLetsPlay").click(function(){
     
     // set team names
@@ -108,6 +117,10 @@ var moveLogo = function(score1, score2) {
     $("#logo").css({
         left: $("#logo").position().left - toMove + "px"
     });                  
+
+    // show current position
+    $("#debugPanel").text($("#logo").css("left"));
+
 };
 
 var rinseRepeat = function() {
