@@ -24,3 +24,4 @@ project.lock.json
 appsettings.json
 local.settings.json
 local.settings.bak.json
+node_modules/
