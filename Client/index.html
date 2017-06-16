@@ -61,6 +61,8 @@
             var Team1Score = 0;
             var Team2Score = 0;
 
+            var siteDomain = "https://" + document.domain
+
             $("#btnLetsPlay").click(function(){
                 
                 // set team names
@@ -88,7 +90,7 @@
                     }
 
                 $.ajax({
-                        url : "https://aztugofwar.azurewebsites.net/createteams",
+                        url : siteDomain + "/createteams",
                         type: "POST",
                         data: JSON.stringify(teamsData),
                         contentType: "application/json",
@@ -128,7 +130,7 @@
             var getScore = function(teamData,teamNum) {
 
                 $.ajax({
-                        url : "https://aztugofwar.azurewebsites.net/getscores",
+                        url : siteDomain + "/getscores",
                         type: "POST",
                         data: JSON.stringify(teamData),
                         contentType: "application/json",

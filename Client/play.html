@@ -53,6 +53,8 @@
             var Team1Name = "Loading... ";
             var Team2Name = "Loading... ";
 
+            var siteDomain = "https://" + document.domain
+
             $("#team1btn").click(function(){
                 vote(Team1Name);
             }); 
@@ -63,7 +65,7 @@
 
             var vote = function(teamId) {
                 $.ajax({
-                        url : "https://aztugofwar.azurewebsites.net/incrementpoint",
+                        url : siteDomain + "/incrementpoint",
                         type: "POST",
                         data: JSON.stringify(
                             {team: teamId}
@@ -85,7 +87,7 @@
                 }
 
                 $.ajax({
-                        url : "https://aztugofwar.azurewebsites.net/getsettings",
+                        url : siteDomain + "/getsettings",
                         type: "GET",
                         contentType: "application/json",
                         dataType   : "json",
