@@ -37,50 +37,65 @@
         <div class="container">
 
             <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
             <!-- start form -->
                 <div class="panel panel-primary">
-                    <div class="panel-heading">Tug of War Game Setup</div>
+                    <div class="panel-heading">Welcome to the Tug of War game demo powered by Azure Functions.</div>
                     <div class="panel-body">
-                        <p>Welcome to the Tug of War game demo powered by Azure Functions. Please enter in a name for Team 1 and Team 2 and hit <strong>Let's Play</strong>.</p>
-                        <p>Please make sure that your browser window is Maximized!</p>
-                        <div class="form-inline">
-                            <div class="form-group">
-                                <label>Team 1:</label>
-                                <input type="text" class="form-control" placeholder="Team 1 Name" id="nameTeam1"/>
-                                <label>&nbsp;Team 2:</label>
-                                <input type="text" class="form-control" placeholder="Team 2 Name" id="nameTeam2"/>
-                                <button class="btn btn-success" id="btnLetsPlay">
-                                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span> Let's Play!
-                                    
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form">
+                                    <div class="form-group">
+                                        <label>Enter a name for Team 1:</label>
+                                        <input type="text" class="form-control" placeholder="Team 1 Name" id="nameTeam1"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Enter a name for Team 2:</label>
+                                        <input type="text" class="form-control" placeholder="Team 2 Name" id="nameTeam2"/>
+                                    </div>
+                                    <button class="form-control btn btn-success" id="btnLetsPlay">
+                                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span> Let's Play!                             
                                     </button>
+                                </div>
                             </div>
+                            <div class="col-md-6">
+                                <h3 style="padding-top: 0px; margin-top: 0px;">Instructions</h3>
+                                <ol>
+                                    <li>Enter a name for Team 1 and Team 2 and click the <strong>Let's Play</strong> button.</li>
+                                    <li>Instruct your players to visit <mark><strong><a href="https://aka.ms/aztugofwar" target="_blank">https://aka.ms/aztugofwar</a></strong></mark> to start playing!</li>
+                                    <li>To start a new game simply refresh this page.</li>
+                                </ol>
+                            </div>     
                         </div>
                     </div>
                 </div>                    
             <!-- end form -->
+            </div>
+            <div class="col-md-2"></div>
             </div>
 
             <!-- start display -->
 
             <div class="row">
 
-                <div class="panel panel-primary">
+                <div class="panel panel-info">
                     <div class="panel-heading">
                         Real Time Game Progress
                     </div>
                     <div class="panel-body">
                         <!-- start inner display -->
                         <div class="row">
-                        <div class="col-md-2 text-center">                            
+                        <div class="col-md-2 text-center" id="team1Info">                            
                             <div class="teamNameDisplay" id="team1Display">Team 1</div>
                             <button class="btn btn-lg btn-primary" id="team1">0</button>
                         </div>
                         <div class="col-md-8">   
-                            <div style="position:relative;" id="gameArea">
+                            <div id="gameArea">
                                 <img id="logo" src="functions-logo.png">     
                             </div>      
                         </div>
-                        <div class="col-md-2 text-center">
+                        <div class="col-md-2 text-center" id="team2Info">
                             <div class="teamNameDisplay" id="team2Display">Team 1</div>
                             <button class="btn btn-lg btn-primary" id="team2">0</button>
                         </div> 
@@ -99,9 +114,8 @@
             <hr>
 
             <footer>
-                <ul class="nav navbar-nav">
-                    <p>follow me on twitter <a href="https://twitter.com/joescars">@joescars</a></p>
-                </ul>
+                <a href="https://github.com/joescars/TugOfWar-FunctionsDemo">GitHub Repo</a> |
+                follow me <a href="https://twitter.com/joescars">@joescars</a>
             </footer>            
         </div>
 

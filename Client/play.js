@@ -8,7 +8,7 @@ $( document ).ready(function() {
 var Team1Name = "Loading... ";
 var Team2Name = "Loading... ";
 
-var siteDomain = "https://" + document.domain
+var siteDomain = "https://" + document.domain;
 
 $("#team1btn").click(function(){
     vote(Team1Name);

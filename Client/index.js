@@ -11,7 +11,7 @@ var Team2Name = "Team2";
 var Team1Score = 0;
 var Team2Score = 0;
 
-var siteDomain = "https://" + document.domain
+var siteDomain = "https://" + document.domain;
 
 var setGameArea = function() {
     gameAreaWidth = $("#gameArea").width();
@@ -19,6 +19,7 @@ var setGameArea = function() {
     $("#logo").css("left",playerPadding);
     //alert();
 };
+
 $("#btnLetsPlay").click(function(){
     
     // set team names
@@ -78,9 +79,6 @@ var updateScore = function() {
     // move logo based on scores
     moveLogo(Team1Score, Team2Score);
 
-    // fire off the same function shortly
-    rinseRepeat();                    
-
 };
 
 var getScore = function(teamData,teamNum) {
@@ -114,12 +112,30 @@ var moveLogo = function(score1, score2) {
     console.log("Moving: " + toMove);
         
     // move logo based on scores
-    $("#logo").css({
-        left: $("#logo").position().left - toMove + "px"
-    });                  
+
+    // $("#logo").css({
+    //     left: $("#logo").position().left - toMove + "px"
+    // });                  
+
+    $("#logo").animate({left: "-=" + toMove + "px"}, 500);
 
     // show current position
-    $("#debugPanel").text($("#logo").css("left"));
+    var iPos = parseInt($("#logo").css("left").replace("px",""));
+    $("#debugPanel").text(iPos);
+
+    // check and display winner
+    if (iPos <= 0) {
+        // team1 wins
+        $("#team1Info").addClass("winner");
+        return;
+    } else if (iPos >= (gameAreaWidth - 100)) {
+        // team2 wins
+        $("#team2Info").addClass("winner");
+        return;
+    }
+
+    // fire off the same function shortly
+    rinseRepeat(); 
 
 };
 
