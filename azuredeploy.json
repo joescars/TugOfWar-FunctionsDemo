@@ -14,17 +14,12 @@
             "metadata": {
                 "description": "The location to use for creating the function app and hosting plan. It must be one of the Azure locations that support function apps."
             }
-        },
-        "repoUrl": {
-            "type": "string",
-            "metadata": {
-                "description": "Location of Git repository of Azure Function source."
-            }
         }
     },
     "variables": {
         "storageName": "[concat('function', uniqueString(parameters('siteName')))]",
         "contentShareName": "[toLower(parameters('siteName'))]",
+        "repoUrl": "https://github.com/joescars/TugOfWar-FunctionsDemo.git",
         "branch": "master"
     },
     "resources": [
@@ -73,7 +68,7 @@
                         "[resourceId('Microsoft.Web/Sites', parameters('siteName'))]"
                     ],
                     "properties": {
-                        "RepoUrl": "[parameters('https://github.com/joescars/TugOfWar-FunctionsDemo')]",
+                        "RepoUrl": "[variables('repoURL')]",
                         "branch": "[variables('branch')]",
                         "IsManualIntegration": true
                     }
