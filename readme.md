@@ -20,6 +20,7 @@ The following concepts are covered through this demo:
 - Upon submitting these teams a new "Game" is created. 
 
 - The presenter then instructions players to visit play.html. They will see two buttons, one for Team A and one for Team B. 
+    - *Note; in the image below the url is specifically to my personal demo of the game. You will need to replace that url with your own when deploying*
 
 - The goal is to have 1/2 the room hit one button and the other half the second button as fast as they can. 
 
