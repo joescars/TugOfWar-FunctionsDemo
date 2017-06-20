@@ -20,7 +20,7 @@
       "type": "table",
       "tableName": "teampoints",
       "filter": "team eq '{team}'",
-      "connection": "MyStorageAcct",
+      "connection": "AzureWebJobsStorage",
       "direction": "in"
     }     
   ]

@@ -19,7 +19,7 @@
       "type": "queue",
       "name": "out",
       "queueName": "scorequeue",
-      "connection": "MyStorageAcct",
+      "connection": "AzureWebJobsStorage",
       "direction": "out"
     }
   ]
