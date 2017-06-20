@@ -10,7 +10,7 @@
                     "OPTIONS"
                 ]
             },
-            "backendUri": "https://%GET_CURRENT_SCORE_URL%"
+            "backendUri": "https://%WEBSITE_HOSTNAME%/api/GetCurrentScore"
         },
         "incrementpoint": {
             "matchCondition": {
@@ -20,7 +20,7 @@
                     "OPTIONS"
                 ]
             },
-            "backendUri": "https://%INCREMENT_POINT_URL%"
+            "backendUri": "https://%WEBSITE_HOSTNAME%/api/IncrementPointTrigger"
         },
         "root": {
             "matchCondition": {
@@ -37,7 +37,7 @@
                     "OPTIONS"
                 ]
             },
-            "backendUri": "https://%CREATE_TEAM_SETTINGS_URL%"
+            "backendUri": "https://%WEBSITE_HOSTNAME%/api/CreateTeamSettings"
         },
         "getsettings": {
             "matchCondition": {
@@ -47,7 +47,7 @@
                     "OPTIONS"
                 ]
             },
-            "backendUri": "https://%GET_TEAM_SETTINGS_URL%"
+            "backendUri": "https://%WEBSITE_HOSTNAME%/api/GetTeamSettings"
         }
     }
 }
