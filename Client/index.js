@@ -113,11 +113,11 @@ var moveLogo = function(score1, score2) {
         
     // move logo based on scores
 
-    // $("#logo").css({
-    //     left: $("#logo").position().left - toMove + "px"
-    // });                  
+    $("#logo").css({
+        left: $("#logo").position().left - toMove + "px"
+    });                  
 
-    $("#logo").animate({left: "-=" + toMove + "px"}, 500);
+    // $("#logo").animate({left: "-=" + toMove + "px"}, 500);
 
     // show current position
     var iPos = parseInt($("#logo").css("left").replace("px",""));
