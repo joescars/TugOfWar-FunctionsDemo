@@ -13,6 +13,15 @@ The following concepts are covered through this demo:
 - Debugging using VS Code
 - Application Insights
 
+## Setup Instructions ##
+
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.svg)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fjoescars%2FTugOfWar-FunctionsDemo%2Fmaster%2Fazuredeploy.json)
+
+1. Click *Deploy to Azure* above to deploy directly to your Azure subscription.
+2. Once deployed, you must manually create a storage container called **content** and upload all the files inside the *client* folder. 
+    - I recommend using the [Azure Storage Explorer](http://storageexplorer.com/). 
+3. Make sure to **change the url** in *index.html* where it says "Instrcut your players to visit" to your shorturl or direct link to your *play.html* page. 
+
 ## How to Play ##
 
 - From the home page (*index.html*) the presenter creates two Teams. For example. Team A and Team B. 
@@ -46,7 +55,9 @@ Behind the scenes we are using Azure Functions with Storage Queues, Table Storag
 
 ## Resources ##
 
-Please feel free to reach out to me with questions on twitter [@joescars](https://www.twitter.com/joescars)
+- [Azure Functions Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/)
+- [Azure Storage Explorer](http://storageexplorer.com/)
+- Contact me on twitter [@joescars](https://www.twitter.com/joescars)
 
 ## Easy Deploy ##
 [![Deploy to Azure](http://azuredeploy.net/deploybutton.svg)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fjoescars%2FTugOfWar-FunctionsDemo%2Fmaster%2Fazuredeploy.json)
