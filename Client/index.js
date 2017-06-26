@@ -107,8 +107,10 @@ var refreshScore = function(score1, score2) {
 };
 
 var moveLogo = function(score1, score2) {
+    
     // do the math
-    var toMove = parseInt(score1) - parseInt(score2);    
+    // we divide to slow down the movement
+    var toMove = (parseInt(score1) - parseInt(score2)) / 3;    
     console.log("Moving: " + toMove);
         
     // move logo based on scores
