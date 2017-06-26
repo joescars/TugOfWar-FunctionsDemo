@@ -54,7 +54,11 @@
                         {
                             "name": "ROUTING_EXTENSION_VERSION",
                             "value": "~0.1"
-                        }
+                        },
+                        {
+                            "name": "mycontainer_uri",
+                            "value": "[concat(variables('storageName'),'.blob.core.windows.net')]"
+                        }                        
                     ]
                 },
                 "clientAffinityEnabled": false
