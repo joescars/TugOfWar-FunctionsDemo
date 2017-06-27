@@ -11,14 +11,19 @@ var Team2Name = "Loading... ";
 var siteDomain = "https://" + document.domain;
 
 $("#team1btn").click(function(){
+
     vote(Team1Name);
+    
 }); 
 
 $("#team2btn").click(function(){
+
     vote(Team2Name);
+
 });    
 
 var vote = function(teamId) {
+
     $.ajax({
             url : siteDomain + "/incrementpoint",
             type: "POST",
@@ -30,7 +35,8 @@ var vote = function(teamId) {
             success    : function(){
                 console.log("Voted");
             }
-        });                
+        });        
+
 };      
 
 var getSettings = function() {
@@ -63,6 +69,8 @@ var getSettings = function() {
 };            
 
 var setupLabels = function() {
+
         $("#team1btn").text("Team: " + Team1Name);
         $("#team2btn").text("Team: " + Team2Name);
+
 }
