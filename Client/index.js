@@ -6,7 +6,10 @@ $( document ).ready(function() {
 var gameAreaWidth = 0;
 
 var Team1Name = "Team1";
-var Team2Name = "Team2";                
+var Team2Name = "Team2"; 
+
+var Team1Id;
+var Team2Id;               
 
 var Team1Score = 0;
 var Team2Score = 0;
@@ -34,9 +37,6 @@ $("#btnLetsPlay").click(function(){
     // create the teams in the db
     setupTeams();
 
-    // kick off the process
-    updateScore();
-
 }); 
 
 var setupTeams = function() {
@@ -55,7 +55,13 @@ var setupTeams = function() {
             contentType: "application/json",
             dataType   : "json",
             success    : function(data){
+                var Result = JSON.parse(data);
+                Team1Id = Result.team1Id;
+                Team2Id = Result.team2Id;
                 console.log("Teams Created");
+
+                // kick off the process
+                updateScore();                
             }
         });
 
@@ -66,8 +72,8 @@ var updateScore = function() {
     console.log("---------------")
     var scoreResult;
 
-    var team1Data = {"team" : Team1Name};
-    var team2Data = {"team" : Team2Name};                
+    var team1Data = {"teamId" : Team1Id};
+    var team2Data = {"teamId" : Team2Id};                
 
     getScore(team1Data,1);
     getScore(team2Data,2);

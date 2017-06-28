@@ -19,7 +19,7 @@
       "name": "myPoints",
       "type": "table",
       "tableName": "teampoints",
-      "filter": "team eq '{team}'",
+      "filter": "teamId eq '{teamId}'",
       "connection": "AzureWebJobsStorage",
       "direction": "in"
     }     

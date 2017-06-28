@@ -8,17 +8,20 @@ $( document ).ready(function() {
 var Team1Name = "Loading... ";
 var Team2Name = "Loading... ";
 
+var Team1Id;
+var Team2Id;
+
 var siteDomain = "https://" + document.domain;
 
 $("#team1btn").click(function(){
 
-    vote(Team1Name);
+    vote(Team1Id);
     
 }); 
 
 $("#team2btn").click(function(){
 
-    vote(Team2Name);
+    vote(Team2Id);
 
 });    
 
@@ -28,7 +31,7 @@ var vote = function(teamId) {
             url : siteDomain + "/incrementpoint",
             type: "POST",
             data: JSON.stringify(
-                {team: teamId}
+                {teamId: teamId}
             ),
             contentType: "application/json; charset=utf-8",
             dataType   : "json",
@@ -57,6 +60,8 @@ var getSettings = function() {
                 var Result = JSON.parse(data);
                 Team1Name = Result.team1;
                 Team2Name = Result.team2;
+                Team1Id = Result.team1Id;
+                Team2Id = Result.team2Id;
 
                 // set button labels
                 setupLabels();        

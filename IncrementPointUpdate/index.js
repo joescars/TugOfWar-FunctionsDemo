@@ -2,16 +2,18 @@ module.exports = function (context) {
    
     var myTeam = new TeamPoint(context.bindings.myScoreItem);  
 
+    context.log('---------->' + context.bindings.myScoreItem)
+
     context.bindings.out = myTeam;
      
     context.done();
     
 };
 
-function TeamPoint(teamNameIn) {
+function TeamPoint(teamIdIn) {
     this.PartitionKey = "point";
     this.RowKey = guid();
-    this.team = teamNameIn;
+    this.teamId = teamIdIn;
 }
 
 function guid() {

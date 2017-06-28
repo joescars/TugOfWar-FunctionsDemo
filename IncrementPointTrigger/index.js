@@ -4,7 +4,8 @@ module.exports = function (context, req, myQueueItem) {
     if (typeof req.body != 'undefined' && typeof req.body == 'object') {
 
         var myReq = req.body;
-        context.bindings.out = myReq.team;
+        context.log('---------->' + myReq.teamId)
+        context.bindings.out = myReq.teamId;
     }
 
     context.done();
