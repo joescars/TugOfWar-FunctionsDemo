@@ -1,5 +1,9 @@
 # Tug of War with Azure Functions #
 
+Play a live version here: [https://aka.ms/aztugofwar](https://aka.ms/aztugofwar).
+
+## About the Demo ##
+
 This simple demo game is used to teach basic concepts around building Azure Functions with node.js. 
 
 It also provides a fun an interactive way to show Azure Functions in use. 
