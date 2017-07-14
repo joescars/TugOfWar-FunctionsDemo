@@ -1,6 +1,8 @@
-# Tug of War with Azure Functions #
+# Tug of War with Azure Functions (nodeJs) #
 
-Play a live version here: [https://aka.ms/aztugofwar](https://aka.ms/aztugofwar).
+Play a live demo here: [https://aka.ms/aztugofwar](https://aka.ms/aztugofwar).
+
+C# Class Library version here: [https://github.com/joescars/TugOfWar-CSharp](https://github.com/joescars/TugOfWar-CSharp).
 
 ## About the Demo ##
 
