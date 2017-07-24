@@ -5,7 +5,7 @@
       "type": "queueTrigger",
       "name": "myScoreItem",
       "queueName": "scorequeue",
-      "connection": "MyStorageAcct",
+      "connection": "AzureWebJobsStorage",
       "direction": "in"
     },
     {
