@@ -21,7 +21,6 @@ The following concepts are covered through this demo:
 
 ## Setup Instructions ##
 
-[![Deploy to Azure](http://azuredeploy.net/deploybutton.svg)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fjoescars%2FTugOfWar-FunctionsDemo%2Fmaster%2Fazuredeploy.json)
 [![Deploy to Azure](https://azuredeploy.net/deploybutton.svg)](https://azuredeploy.net/)
 
 1. Click *Deploy to Azure* above to deploy directly to your Azure subscription.
