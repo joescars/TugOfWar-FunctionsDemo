@@ -23,11 +23,6 @@ The following concepts are covered through this demo:
 
 [![Deploy to Azure](https://azuredeploy.net/deploybutton.svg)](https://azuredeploy.net/)
 
-1. Click *Deploy to Azure* above to deploy directly to your Azure subscription.
-2. Once deployed, you must manually create a storage container called **content** and upload all the files inside the *client* folder. 
-    - I recommend using the [Azure Storage Explorer](http://storageexplorer.com/). 
-3. Make sure to **change the url** in *index.html* where it says "Instruct your players to visit" to your shorturl or direct link to your *play.html* page. 
-
 ## How to Play ##
 
 - From the home page (*index.html*) the presenter creates two Teams. For example. Team A and Team B. 
