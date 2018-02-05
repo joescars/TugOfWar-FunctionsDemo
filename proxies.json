@@ -48,6 +48,16 @@
                 ]
             },
             "backendUri": "https://%WEBSITE_HOSTNAME%/api/GetTeamSettings"
+        },
+        "default": {
+            "matchCondition": {
+                "route": "/",
+                "methods": [
+                    "GET",
+                    "OPTIONS"
+                ]
+            },
+            "backendUri": "https://%mycontainer_uri%/content/index.html"
         }
     }
 }

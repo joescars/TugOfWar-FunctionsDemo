@@ -52,13 +52,13 @@
                             "value": "[variables('contentShareName')]"
                         },
                         {
-                            "name": "ROUTING_EXTENSION_VERSION",
-                            "value": "~0.1"
-                        },
-                        {
                             "name": "mycontainer_uri",
                             "value": "[concat(variables('storageName'),'.blob.core.windows.net')]"
-                        }                        
+                        },
+                        {
+                            "name": "STORAGE_KEY",
+                            "value": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageName')), '2015-05-01-preview').key1]"
+                        }                       
                     ]
                 },
                 "clientAffinityEnabled": false
