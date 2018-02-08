@@ -1,6 +1,7 @@
 $( document ).ready(function() {
     // do nothing...
-    setGameArea(); 
+    setGameArea();
+    setPlayUrl();
 });
 
 var gameAreaWidth = 0;
@@ -162,3 +163,8 @@ var isWinningTeam = function() {
 var rinseRepeat = function() {
     setTimeout(updateScore, 1000);
 };
+
+function setPlayUrl() {
+    var playLink = document.getElementById('playlink');
+    playLink.innerText = playLink.href;
+}

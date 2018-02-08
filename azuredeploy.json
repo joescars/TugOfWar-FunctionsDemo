@@ -14,13 +14,17 @@
             "metadata": {
                 "description": "The location to use for creating the function app and hosting plan. It must be one of the Azure locations that support function apps."
             }
+        },
+        "repoUrl": {
+            "type": "string"
+        },
+        "branch": {
+            "type": "string"
         }
     },
     "variables": {
         "storageName": "[concat('function', uniqueString(parameters('siteName')))]",
-        "contentShareName": "[toLower(parameters('siteName'))]",
-        "repoUrl": "https://github.com/joescars/TugOfWar-FunctionsDemo.git",
-        "branch": "master"
+        "contentShareName": "[toLower(parameters('siteName'))]"
     },
     "resources": [
         {
@@ -52,13 +56,13 @@
                             "value": "[variables('contentShareName')]"
                         },
                         {
-                            "name": "ROUTING_EXTENSION_VERSION",
-                            "value": "~0.1"
-                        },
-                        {
                             "name": "mycontainer_uri",
                             "value": "[concat(variables('storageName'),'.blob.core.windows.net')]"
-                        }                        
+                        },
+                        {
+                            "name": "STORAGE_KEY",
+                            "value": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageName')), '2015-05-01-preview').key1]"
+                        }                       
                     ]
                 },
                 "clientAffinityEnabled": false
@@ -72,8 +76,8 @@
                         "[resourceId('Microsoft.Web/Sites', parameters('siteName'))]"
                     ],
                     "properties": {
-                        "RepoUrl": "[variables('repoURL')]",
-                        "branch": "[variables('branch')]",
+                        "RepoUrl": "[parameters('repoUrl')]",
+                        "branch": "[parameters('branch')]",
                         "IsManualIntegration": true
                     }
                 }
