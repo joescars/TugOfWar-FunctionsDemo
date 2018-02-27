@@ -51,7 +51,6 @@ var setupTeams = function() {
     $.ajax({
             url : siteDomain + "/createteams",
             type: "POST",
-            type: "POST",
             data: JSON.stringify(teamsData),
             contentType: "application/json",
             dataType   : "json",
