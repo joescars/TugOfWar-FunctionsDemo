@@ -1,24 +1,28 @@
 {
-  "disabled": false,
-  "bindings": [
-    {
-      "type": "queueTrigger",
-      "name": "myScoreItem",
-      "queueName": "scorequeue",
-      "connection": "AzureWebJobsStorage",
-      "direction": "in"
-    },
-    {
-      "type": "http",
-      "direction": "out",
-      "name": "res"
-    },
-    {
-        "name": "out",
-        "type": "table",
-        "direction": "out",
-        "tableName": "teampoints",
-        "connection": "AzureWebJobsStorage"
-    } 
-  ]
+ "disabled": false,
+ "bindings": [
+  {
+   "type": "queueTrigger",
+   "name": "myScoreItem",
+   "queueName": "scorequeue",
+   "connection": "AzureWebJobsStorage",
+   "direction": "in"
+  },
+  {
+   "type": "http",
+   "direction": "out",
+   "name": "res"
+  },
+  {
+   "name": "out",
+   "type": "table",
+   "direction": "out",
+   "tableName": "teampoints",
+   "connection": "AzureWebJobsStorage"
+  }
+ ],
+ "_originalEntryPoint": false,
+ "_originalScriptFile": "index.js",
+ "scriptFile": "../.funcpack/index.js",
+ "entryPoint": "IncrementPointUpdate"
 }

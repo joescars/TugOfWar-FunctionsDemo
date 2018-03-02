@@ -1,26 +1,31 @@
 {
-  "disabled": false,
-  "bindings": [
-    {
-      "authLevel": "anonymous",
-      "type": "httpTrigger",
-      "direction": "in",
-      "name": "req",
-      "methods": [
-        "post" ,"options"
-      ]
-    },
-    {
-      "type": "http",
-      "direction": "out",
-      "name": "res"
-    },
-    {
-        "name": "out",
-        "type": "table",
-        "direction": "out",
-        "tableName": "gamesettings",
-        "connection": "AzureWebJobsStorage"
-    }    
-  ]
+ "disabled": false,
+ "bindings": [
+  {
+   "authLevel": "anonymous",
+   "type": "httpTrigger",
+   "direction": "in",
+   "name": "req",
+   "methods": [
+    "post",
+    "options"
+   ]
+  },
+  {
+   "type": "http",
+   "direction": "out",
+   "name": "res"
+  },
+  {
+   "name": "out",
+   "type": "table",
+   "direction": "out",
+   "tableName": "gamesettings",
+   "connection": "AzureWebJobsStorage"
+  }
+ ],
+ "_originalEntryPoint": false,
+ "_originalScriptFile": "index.js",
+ "scriptFile": "../.funcpack/index.js",
+ "entryPoint": "CreateTeamSettings"
 }
