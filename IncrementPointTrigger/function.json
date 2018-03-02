@@ -1,26 +1,30 @@
 {
-  "disabled": false,
-  "bindings": [
-    {
-      "authLevel": "anonymous",
-      "type": "httpTrigger",
-      "direction": "in",
-      "name": "req",
-      "methods": [
-        "post"
-      ]
-    },
-    {
-      "type": "http",
-      "direction": "out",
-      "name": "res"
-    },
-    {
-      "type": "queue",
-      "name": "out",
-      "queueName": "scorequeue",
-      "connection": "AzureWebJobsStorage",
-      "direction": "out"
-    }
-  ]
+ "disabled": false,
+ "bindings": [
+  {
+   "authLevel": "anonymous",
+   "type": "httpTrigger",
+   "direction": "in",
+   "name": "req",
+   "methods": [
+    "post"
+   ]
+  },
+  {
+   "type": "http",
+   "direction": "out",
+   "name": "res"
+  },
+  {
+   "type": "queue",
+   "name": "out",
+   "queueName": "scorequeue",
+   "connection": "AzureWebJobsStorage",
+   "direction": "out"
+  }
+ ],
+ "_originalEntryPoint": false,
+ "_originalScriptFile": "index.js",
+ "scriptFile": "../.funcpack/index.js",
+ "entryPoint": "IncrementPointTrigger"
 }
