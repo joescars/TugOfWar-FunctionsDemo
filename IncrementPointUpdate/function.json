@@ -20,9 +20,5 @@
    "tableName": "teampoints",
    "connection": "AzureWebJobsStorage"
   }
- ],
- "_originalEntryPoint": false,
- "_originalScriptFile": "index.js",
- "scriptFile": "../.funcpack/index.js",
- "entryPoint": "IncrementPointUpdate"
+ ]
 }
