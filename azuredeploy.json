@@ -28,7 +28,7 @@
     },
     "resources": [
         {
-            "apiVersion": "2016-03-01",
+            "apiVersion": "2016-08-01",
             "name": "[parameters('siteName')]",
             "type": "Microsoft.Web/sites",
             "properties": {
@@ -45,7 +45,7 @@
                         },
                         {
                             "name": "FUNCTIONS_EXTENSION_VERSION",
-                            "value": "~1"
+                            "value": "~2"
                         },
                         {
                             "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
@@ -69,9 +69,9 @@
             },
             "resources": [
                 {
-                    "apiVersion": "2015-08-01",
+                    "apiVersion": "2016-08-01",
                     "name": "web",
-                    "type": "sourcecontrols",
+                    "type": "config",
                     "dependsOn": [
                         "[resourceId('Microsoft.Web/Sites', parameters('siteName'))]"
                     ],
