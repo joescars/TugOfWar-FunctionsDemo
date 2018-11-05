@@ -71,7 +71,7 @@
                 {
                     "apiVersion": "2016-08-01",
                     "name": "web",
-                    "type": "config",
+                    "type": "sourcecontrols",
                     "dependsOn": [
                         "[resourceId('Microsoft.Web/Sites', parameters('siteName'))]"
                     ],
