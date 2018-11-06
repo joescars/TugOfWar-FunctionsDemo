@@ -52,7 +52,6 @@ The following concepts are covered through this demo:
 Behind the scenes we are using Azure Functions with Storage Queues, Table Storage and Proxies.
 
 ![Architecture Diagram](_static/arch-diagram.png)
-*Architecture Diagram generated using [https://functions-visualizer.azurewebsites.net/](https://functions-visualizer.azurewebsites.net/)*
 
 ## Resources ##
 
