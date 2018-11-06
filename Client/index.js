@@ -16,6 +16,7 @@ var Team1Score = 0;
 var Team2Score = 0;
 
 var siteDomain = "https://" + document.domain;
+//var siteDomain = "http://localhost:7071";
 
 var setGameArea = function() {
 
@@ -55,7 +56,7 @@ var setupTeams = function() {
             contentType: "application/json",
             dataType   : "json",
             success    : function(data){
-                var Result = JSON.parse(data);
+                var Result = data;
                 Team1Id = Result.team1Id;
                 Team2Id = Result.team2Id;
                 console.log("Teams Created");
@@ -105,7 +106,7 @@ var getScore = function(teamData,teamNum) {
             contentType: "application/json",
             dataType   : "json",
             success    : function(data){
-                var Result = JSON.parse(data);
+                var Result = data;
                 if(teamNum == 1) {
                     Team1Score = Result.Score;
                 } else {
