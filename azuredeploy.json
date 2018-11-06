@@ -28,7 +28,7 @@
     },
     "resources": [
         {
-            "apiVersion": "2016-03-01",
+            "apiVersion": "2016-08-01",
             "name": "[parameters('siteName')]",
             "type": "Microsoft.Web/sites",
             "properties": {
@@ -45,7 +45,11 @@
                         },
                         {
                             "name": "FUNCTIONS_EXTENSION_VERSION",
-                            "value": "~1"
+                            "value": "~2"
+                        },
+                        {
+                            "name": "WEBSITE_NODE_DEFAULT_VERSION",
+                            "value": "8.11.1"
                         },
                         {
                             "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
@@ -69,7 +73,7 @@
             },
             "resources": [
                 {
-                    "apiVersion": "2015-08-01",
+                    "apiVersion": "2016-08-01",
                     "name": "web",
                     "type": "sourcecontrols",
                     "dependsOn": [

@@ -12,6 +12,7 @@ var Team1Id;
 var Team2Id;
 
 var siteDomain = "https://" + document.domain;
+//var siteDomain = "http://localhost:7071";
 
 $("#team1btn").click(function(){
 
@@ -57,7 +58,7 @@ var getSettings = function() {
             dataType   : "json",
             success    : function(data){
                 
-                var Result = JSON.parse(data);
+                var Result = data;
                 Team1Name = Result.team1;
                 Team2Name = Result.team2;
                 Team1Id = Result.team1Id;
