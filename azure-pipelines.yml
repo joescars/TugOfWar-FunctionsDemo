@@ -32,19 +32,19 @@ steps:
   #workingDirectory: .
   displayName: 'Install extensions'
 
-- task: Npm@1
-  displayName: 'npm install'
-  inputs:
-    #workingDir: .
-    verbose: false
+# - task: Npm@1
+#   displayName: 'npm install'
+#   inputs:
+#     #workingDir: .
+#     verbose: false
 
-- task: Npm@1
-  displayName: 'npm test'
-  inputs:
-    command: custom
-    #workingDir: .
-    verbose: false
-    customCommand: 'run-script test'
+# - task: Npm@1
+#   displayName: 'npm test'
+#   inputs:
+#     command: custom
+#     #workingDir: .
+#     verbose: false
+#     customCommand: 'run-script test'
 
 - task: ArchiveFiles@2
   displayName: 'Archive files'
