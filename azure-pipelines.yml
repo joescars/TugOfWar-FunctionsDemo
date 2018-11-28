@@ -12,45 +12,45 @@ pool:
 #  
 steps:
 - task: NodeTool@0
-  displayName: 'Use Node 8.x'
-  inputs:
-    versionSpec: 8.x
-  
+  displayName: 'Use Node 8.x'
+  inputs:
+    versionSpec: 8.x
+
 - task: DotNetCoreInstaller@0
-  displayName: 'Use .NET Core 2.1'
-  inputs:
-    version: 2.1.402
-  
+  displayName: 'Use .NET Core 2.1'
+  inputs:
+    version: 2.1.402
+
 - task: Npm@1
-  displayName: 'Install Azure Functions Core Tools'
-  inputs:
-    command: custom
-    verbose: false
-    customCommand: 'install -g azure-functions-core-tools'
-  
+  displayName: 'Install Azure Functions Core Tools'
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: 'install -g azure-functions-core-tools'
+
 - bash: 'func extensions install'
-  #workingDirectory: .
-  displayName: 'Install extensions'
- 
+  #workingDirectory: .
+  displayName: 'Install extensions'
+
 - task: Npm@1
-  displayName: 'npm install'
-  inputs:
-    #workingDir: .
-    verbose: false
-  
+  displayName: 'npm install'
+  inputs:
+    #workingDir: .
+    verbose: false
+
 - task: Npm@1
-  displayName: 'npm test'
-  inputs:
-    command: custom
-    #workingDir: .
-    verbose: false
-    customCommand: 'run-script test'
-  
+  displayName: 'npm test'
+  inputs:
+    command: custom
+    #workingDir: .
+    verbose: false
+    customCommand: 'run-script test'
+
 - task: ArchiveFiles@2
-  displayName: 'Archive files'
-  inputs:
-    #rootFolderOrFile: .
-    includeRootFolder: false
-  
+  displayName: 'Archive files'
+  inputs:
+    #rootFolderOrFile: .
+    includeRootFolder: false
+
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish artifacts: drop' 
+  displayName: 'Publish artifacts: drop' 
