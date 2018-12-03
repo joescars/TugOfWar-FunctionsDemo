@@ -1,15 +1,6 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 pool:
   vmImage: 'Ubuntu 16.04'
 
-# queue:
-#   name: Hosted
-#   demands: npm
-#  
 steps:
 - task: NodeTool@0
   displayName: 'Use Node 8.x'
@@ -29,7 +20,6 @@ steps:
     customCommand: 'install -g azure-functions-core-tools'
 
 - bash: 'func extensions install'
-  #workingDirectory: .
   displayName: 'Install extensions'
 
 - task: ArchiveFiles@2
