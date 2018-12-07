@@ -1,5 +1,7 @@
 # Tug of War with Azure Functions (nodeJs) #
 
+[![Build Status](https://dev.azure.com/joraio/TugOfWar-Demo-JS/_apis/build/status/joescars.TugOfWar-FunctionsDemo?branchName=master)](https://dev.azure.com/joraio/TugOfWar-Demo-JS/_build/latest?definitionId=6?branchName=master)
+
 Play a live demo here: [https://aka.ms/aztugofwar](https://aka.ms/aztugofwar).
 
 C# Class Library version here: [https://github.com/joescars/TugOfWar-CSharp](https://github.com/joescars/TugOfWar-CSharp).
