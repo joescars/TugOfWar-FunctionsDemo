@@ -60,6 +60,7 @@ Behind the scenes we are using Azure Functions with Storage Queues, Table Storag
 - [Azure Functions Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/)
 - [Azure Storage Explorer](http://storageexplorer.com/)
 - Contact me on twitter [@joescars](https://www.twitter.com/joescars)
+- [My Blog](https://joeraio.com)
 
 ## Easy Deploy ##
 [![Deploy to Azure](https://azuredeploy.net/deploybutton.svg)](https://azuredeploy.net/)
