@@ -5,9 +5,7 @@
             "matchCondition": {
                 "route": "getscores",
                 "methods": [
-                    "GET",
-                    "POST",
-                    "OPTIONS"
+                    "POST"
                 ]
             },
             "backendUri": "https://%WEBSITE_HOSTNAME%/api/GetCurrentScore"
@@ -16,8 +14,7 @@
             "matchCondition": {
                 "route": "incrementpoint",
                 "methods": [
-                    "POST",
-                    "OPTIONS"
+                    "POST"
                 ]
             },
             "backendUri": "https://%WEBSITE_HOSTNAME%/api/IncrementPointTrigger"
@@ -32,9 +29,7 @@
             "matchCondition": {
                 "route": "/createteams",
                 "methods": [
-                    "GET",
-                    "POST",
-                    "OPTIONS"
+                    "POST"
                 ]
             },
             "backendUri": "https://%WEBSITE_HOSTNAME%/api/CreateTeamSettings"
@@ -43,8 +38,7 @@
             "matchCondition": {
                 "route": "/getsettings",
                 "methods": [
-                    "GET",
-                    "OPTIONS"
+                    "GET"
                 ]
             },
             "backendUri": "https://%WEBSITE_HOSTNAME%/api/GetTeamSettings"
@@ -53,8 +47,7 @@
             "matchCondition": {
                 "route": "/",
                 "methods": [
-                    "GET",
-                    "OPTIONS"
+                    "GET"
                 ]
             },
             "backendUri": "https://%mycontainer_uri%/content/index.html"
