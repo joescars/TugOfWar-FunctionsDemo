@@ -12,7 +12,7 @@ var Team1Id;
 var Team2Id;
 
 var siteDomain = "https://" + document.domain;
-//var siteDomain = "http://localhost:7071";
+// var siteDomain = "http://localhost:7071";
 
 $("#team1btn").click(function(){
 

@@ -34,17 +34,11 @@ function TeamSettings(myObj) {
 }
 
 var getInvertedTicks = function() {
-
-    var yourDate = new Date();
-
+    var yourDate  = new Date();
     var epochTicks = 621355968000000000;
-
     var ticksPerMillisecond = 10000;
-
     var yourTicks = epochTicks - (yourDate.getTime() * ticksPerMillisecond);
-
     return yourTicks;
-
 }
 
 function guid() {
