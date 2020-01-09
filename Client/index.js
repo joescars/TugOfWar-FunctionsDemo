@@ -16,7 +16,12 @@ var Team1Score = 0;
 var Team2Score = 0;
 
 var siteDomain = "https://" + document.domain;
-// var siteDomain = "http://localhost:7071";
+
+// for local functions debugging
+if(siteDomain.includes("localhost")) {
+    siteDomain = "http://localhost:7071"
+}
+console.log("siteDomain: " + siteDomain);
 
 var setGameArea = function() {
 
