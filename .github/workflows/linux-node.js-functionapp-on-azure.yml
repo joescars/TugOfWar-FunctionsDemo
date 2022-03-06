@@ -8,9 +8,7 @@ env:
   NODE_VERSION: '8.x'
   AZURE_RESOURCE_GROUP_NAME: 'csu-tugofwar'
   AZURE_FUNCTIONAPP_NAME: 'csu-tugofwar'
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: '${{ github.workspace }}/src/GreetingDemo.Function'
-  BUILD_OUTPUT_PATH: '${{ github.workspace }}/build-artifacts'
-  BUILD_PACKAGE_NAME: 'az-func.zip'
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
 
 defaults:
   run:
@@ -65,18 +63,12 @@ jobs:
        - name: 'Resolve Project Dependencies Using Npm'
          shell: bash
          run: |
+           pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
            npm install
            npm run build --if-present
            npm run test --if-present
+           popd
        
-       # Upload the code artifact, this will be used later
-       - name: 'Package Azure Function release build'
-         uses: actions/upload-artifact@v2
-         with:
-           name: build_artifacts
-           path: ${{ env.BUILD_OUTPUT_PATH }}
-           if-no-files-found: error
-
     ############################################################################
 
     deploy-az-function:
@@ -109,22 +101,10 @@ jobs:
                Remove-Variable profile
            azPSVersion: "latest"
 
-       - name: 'Create output directory'
-         shell: bash
-         run: |
-           mkdir ${{ env.BUILD_OUTPUT_PATH }}
-
-       # Fetch published code
-       - name: 'Download Azure function release build'
-         uses: actions/download-artifact@v2
-         with:
-           name: build_artifacts
-           path: ${{ env.BUILD_OUTPUT_PATH }}
-
        # Deploy Azure functions code
        - name: 'Run Azure Functions Action'
          uses: azure/functions-action@v1
          with:
            app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-           package: ${{ env.BUILD_OUTPUT_PATH }}/${{ env.BUILD_PACKAGE_NAME }}
+           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
            publish-profile: ${{ steps.fncapp.outputs.pubprofile }}
