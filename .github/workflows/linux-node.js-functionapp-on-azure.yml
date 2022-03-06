@@ -1,49 +1,132 @@
-name: Deploy Node.js project to Azure Function App
+name: azure-deploy
 
 on:
-  pull_request:
+  push:
     branches: [ master ]
 
-# CONFIGURATION
-# For help, go to https://github.com/Azure/Actions
-#
-# 1. Set up the following secrets in your repository:
-#   AZURE_FUNCTIONAPP_PUBLISH_PROFILE
-#
-# 2. Change these variables for your configuration:
 env:
-  AZURE_FUNCTIONAPP_NAME: tugofwardemo    # set this to your application's name
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
-  NODE_VERSION: '8.x'                     # set this to the node version to use (supports 8.x, 10.x, 12.x)
+  NODE_VERSION: '8.x'
+  AZURE_RESOURCE_GROUP_NAME: 'csu-tugofwar'
+  AZURE_FUNCTIONAPP_NAME: 'csu-tugofwar'
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '${{ github.workspace }}/src/GreetingDemo.Function'
+  BUILD_OUTPUT_PATH: '${{ github.workspace }}/build-artifacts'
+  BUILD_PACKAGE_NAME: 'az-func.zip'
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    environment: dev
-    steps:
-    - name: 'Checkout GitHub Action'
-      uses: actions/checkout@master
+    deploy-az-infrastructure:
+      runs-on: ubuntu-latest
+      steps:
 
-    - name: Setup Node ${{ env.NODE_VERSION }} Environment
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ env.NODE_VERSION }}
+       # Authentication
+       # Set up the following secrets in your repository: AZURE_CREDENTIALS
+       # For details see https://docs.microsoft.com/en-us/azure/developer/github/connect-from-azure
+       - name: 'Login to Azure'
+         uses: azure/login@v1
+         with:
+           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: 'Resolve Project Dependencies Using Npm'
-      shell: bash
-      run: |
-        pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
-        npm install
-        npm run build --if-present
-        npm run test --if-present
-        popd
+       # Makes source code accessible via $github.workspace
+       - name: 'Checking out source code ...'
+         uses: actions/checkout@v2
+ 
+       # Deploy Azure function app
+       # Note: Using Azure CLI for deployment as it provides more verbose error messages
+       - name: 'Creating Azure Function App'
+         uses: azure/CLI@v1
+         with:
+           inlineScript: |
+             az deployment group create \
+             --name az-func-workflow-deploy \
+             --resource-group ${{ env.AZURE_RESOURCE_GROUP_NAME }} \
+             --template-file $GITHUB_WORKSPACE/azuredeploy.json \
+             --mode incremental \
+             --parameters $GITHUB_WORKSPACE/parameters.json \
+ 
+    ############################################################################
 
-    - name: 'Run Azure Functions Action'
-      uses: Azure/functions-action@v1
-      id: fa
-      with:
-        app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-        package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-        publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
+    build-az-function:
+      needs: [deploy-az-infrastructure]
+      runs-on: ubuntu-latest
+      steps:
+      
+       # Makes source code accessible via $github.workspace
+       - name: 'Checking out source code ...'
+         uses: actions/checkout@v2
 
-# For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples
+       - name: Setup Node ${{ env.NODE_VERSION }} Environment
+         uses: actions/setup-node@v1
+         with:
+           node-version: ${{ env.NODE_VERSION }}
+
+       - name: 'Resolve Project Dependencies Using Npm'
+         shell: bash
+         run: |
+           pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+           npm install
+           npm run build --if-present
+           npm run test --if-present
+           popd
+       
+       # Upload the code artifact, this will be used later
+       - name: 'Package Azure Function release build'
+         uses: actions/upload-artifact@v2
+         with:
+           name: build_artifacts
+           path: ${{ env.BUILD_OUTPUT_PATH }}
+           if-no-files-found: error
+
+    ############################################################################
+
+    deploy-az-function:
+      needs: [build-az-function]
+      runs-on: ubuntu-latest
+      steps:
+      
+       # Makes source code accessible via $github.workspace
+       - name: 'Checking out source code ...'
+         uses: actions/checkout@v2
+       
+       # Authentication
+       # Set up the following secrets in your repository: AZURE_CREDENTIALS
+       # For details see https://docs.microsoft.com/en-us/azure/developer/github/connect-from-azure
+       - name: 'Login to Azure'
+         uses: azure/login@v1
+         with:
+           creds: ${{ secrets.AZURE_CREDENTIALS }}
+           enable-AzPSSession: true
+       
+       - name: 'Fetching Azure Functions Publishing Profile'
+         id: fncapp
+         uses: azure/powershell@v1
+         with:
+           inlineScript: |
+               $profile = ""
+               $profile = Get-AzWebAppPublishingProfile -ResourceGroupName $env:AZURE_RESOURCE_GROUP_NAME -Name $env:AZURE_FUNCTIONAPP_NAME
+               $profile = $profile.Replace("`r", "").Replace("`n", "")
+               Write-Output "::set-output name=pubprofile::$profile"
+               Remove-Variable profile
+           azPSVersion: "latest"
+
+       - name: 'Create output directory'
+         shell: bash
+         run: |
+           mkdir ${{ env.BUILD_OUTPUT_PATH }}
+
+       # Fetch published code
+       - name: 'Download Azure function release build'
+         uses: actions/download-artifact@v2
+         with:
+           name: build_artifacts
+           path: ${{ env.BUILD_OUTPUT_PATH }}
+
+       # Deploy Azure functions code
+       - name: 'Run Azure Functions Action'
+         uses: azure/functions-action@v1
+         with:
+           app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+           package: ${{ env.BUILD_OUTPUT_PATH }}/${{ env.BUILD_PACKAGE_NAME }}
+           publish-profile: ${{ steps.fncapp.outputs.pubprofile }}
