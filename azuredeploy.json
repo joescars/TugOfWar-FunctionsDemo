@@ -97,6 +97,10 @@
         "siteUri": {
             "type": "string",
             "value": "[concat('https://',reference(resourceId('Microsoft.Web/sites', parameters('siteName'))).hostNames[0])]"
+        },
+        "storageAccountName": {
+            "type": "string",
+            "value": "[variables('storageName')]"
         }
     }
 }
