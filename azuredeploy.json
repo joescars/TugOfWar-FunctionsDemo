@@ -1,3 +1,4 @@
+
 {
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
@@ -14,16 +15,10 @@
             "metadata": {
                 "description": "The location to use for creating the function app and hosting plan. It must be one of the Azure locations that support function apps."
             }
-        },
-        "repoUrl": {
-            "type": "string"
-        },
-        "branch": {
-            "type": "string"
         }
     },
     "variables": {
-        "storageName": "[concat('function', uniqueString(parameters('siteName')))]",
+        "storageName": "[concat(replace(toLower(parameters('siteName')), '-', ''), 'sta')]",
         "contentShareName": "[toLower(parameters('siteName'))]"
     },
     "resources": [
@@ -71,21 +66,6 @@
                 },
                 "clientAffinityEnabled": false
             },
-            "resources": [
-                {
-                    "apiVersion": "2016-08-01",
-                    "name": "web",
-                    "type": "sourcecontrols",
-                    "dependsOn": [
-                        "[resourceId('Microsoft.Web/Sites', parameters('siteName'))]"
-                    ],
-                    "properties": {
-                        "RepoUrl": "[parameters('repoUrl')]",
-                        "branch": "[parameters('branch')]",
-                        "IsManualIntegration": true
-                    }
-                }
-            ],
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageName'))]"
             ],
