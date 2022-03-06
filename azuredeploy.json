@@ -1,3 +1,4 @@
+
 {
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
@@ -17,7 +18,7 @@
         }
     },
     "variables": {
-        "storageName": "[concat(toLower(parameters('siteName')), '-sta']",
+        "storageName": "[concat(replace(toLower(parameters('siteName')), '-', ''), 'sta')]",
         "contentShareName": "[toLower(parameters('siteName'))]"
     },
     "resources": [
